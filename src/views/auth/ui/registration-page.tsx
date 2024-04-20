@@ -53,7 +53,6 @@ export const RegistrationPage = () => {
 
   const onSubmit: SubmitHandler<RegistrationInputs> = async (data) => {
     const isValid = await methods.trigger();
-    console.log(data);
 
     if (!isValid) {
       toast({

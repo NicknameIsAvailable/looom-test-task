@@ -16,16 +16,22 @@ export const Step2: React.FC = () => {
       about_executor: data.about_executor,
     },
   });
+
   const { isValid } = formState;
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = (formData) => {
     const newData = { ...data, about_executor: formData.about_executor };
     setData(newData);
     nextStep();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(onSubmit)(e);
+      }}
+    >
       <div className='flex flex-col gap-[10px]'>
         <Textarea
           className='resize-none'
@@ -40,10 +46,10 @@ export const Step2: React.FC = () => {
         )}
       </div>
       <div className='flex justify-between mt-8'>
-        <Button type='submit' onClick={previousStep} variant='outline'>
+        <Button type='button' onClick={previousStep} variant='outline'>
           Назад
         </Button>
-        <Button type='submit' disabled={!isValid} onClick={nextStep}>
+        <Button type='submit' disabled={!isValid}>
           Далее
         </Button>
       </div>

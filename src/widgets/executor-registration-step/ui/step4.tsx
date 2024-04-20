@@ -45,7 +45,7 @@ export const Step4: React.FC = () => {
 
   return (
     <div>
-      <Card className='p-[10px] flex gap-2 w-full'>
+      <Card className='p-[10px] flex flex-wrap gap-2 w-full max-h-24 overflow-auto'>
         {data.product_tag.map((tag) => (
           <Badge onClick={() => removeTag(tag)} variant='outline' key={tag}>
             {tag}
@@ -56,11 +56,11 @@ export const Step4: React.FC = () => {
           value={newTag}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
-          className='border-none bg-none'
+          className='border-none bg-none h-6 max-w-52'
           placeholder='Начните вводить здесь...'
         />
       </Card>
-      <div className='p-[10px] flex gap-2 w-full'>
+      <div className='p-[10px] flex flex-wrap gap-2 w-full'>
         <span className='text-zinc-800 font-normal'>Популярное:</span>
         {popularTags.map((tag) => (
           <Badge
